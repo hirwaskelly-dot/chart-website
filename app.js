@@ -1,4 +1,4 @@
-// 🔥 Replace with your Firebase config
+// 🔥 Replace with your Firebase config (copy from Firebase Console)
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -35,13 +35,11 @@ const firebaseConfig = {
   
     auth.createUserWithEmailAndPassword(userEmail, userPassword)
       .then(userCredential => {
-        // Save user info
         db.collection('users').doc(userCredential.user.uid).set({
           name: userName,
           level: userLevel
         }).then(() => {
           window.location.href = 'chat.html';
-
         });
       })
       .catch(error => {
@@ -60,7 +58,6 @@ const firebaseConfig = {
           }
         });
     } else {
-      // Not logged in → go back to register page
       window.location.href = 'index.html';
     }
   });
@@ -97,5 +94,4 @@ const firebaseConfig = {
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       });
   }
-
   
