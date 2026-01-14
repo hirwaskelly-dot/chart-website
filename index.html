@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Create Account</h2>
+
+
+<input id="name" placeholder="Your Name">
+
+
+<select id="level">
+<option value="">Select Level</option>
+<option>L3</option><option>L4</option><option>L5</option>
+<option>S4</option><option>S5</option><option>S6</option>
+</select>
+
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+
+<button onclick="register()">Register</button>
+
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
