@@ -41,6 +41,7 @@ const firebaseConfig = {
           level: userLevel
         }).then(() => {
           window.location.href = 'chat.html';
+
         });
       })
       .catch(error => {
@@ -96,4 +97,5 @@ const firebaseConfig = {
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       });
   }
+
   
