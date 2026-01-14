@@ -1,4 +1,3 @@
- 
 const firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "your-project-id.firebaseapp.com",
@@ -11,6 +10,7 @@ const firebaseConfig = {
     
     
     firebase.initializeApp(firebaseConfig);
+
     const auth = firebase.auth();
     const db = firebase.firestore();
     
@@ -49,4 +49,5 @@ if (document.getElementById('messages')) {
     messages.innerHTML += `<div class='message'>${doc.data().text}</div>`;
     });
     });
+
     }
