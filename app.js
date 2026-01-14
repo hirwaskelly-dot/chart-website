@@ -13,6 +13,9 @@ const firebaseConfig = {
   const auth = firebase.auth();
   const db = firebase.firestore();
   
+  let currentUserName = '';
+  let currentUserLevel = '';
+  
   // REGISTER FUNCTION
   function register() {
     const userName = document.getElementById('name').value;
@@ -45,6 +48,22 @@ const firebaseConfig = {
       });
   }
   
+  // LOAD CURRENT USER DATA
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      db.collection('users').doc(user.uid).get()
+        .then(doc => {
+          if (doc.exists) {
+            currentUserName = doc.data().name;
+            currentUserLevel = doc.data().level;
+          }
+        });
+    } else {
+      // Not logged in → go back to register page
+      window.location.href = 'index.html';
+    }
+  });
+  
   // SEND MESSAGE FUNCTION
   function sendMessage() {
     const msg = document.getElementById('message').value;
@@ -52,7 +71,9 @@ const firebaseConfig = {
   
     db.collection('messages').add({
       text: msg,
-      time: Date.now()
+      time: Date.now(),
+      name: currentUserName,
+      level: currentUserLevel
     });
   
     document.getElementById('message').value = '';
@@ -66,7 +87,11 @@ const firebaseConfig = {
         messagesDiv.innerHTML = '';
         snapshot.forEach(doc => {
           const data = doc.data();
-          messagesDiv.innerHTML += `<div class='message'>${data.text}</div>`;
+          messagesDiv.innerHTML += `
+            <div class='message'>
+              <strong>${data.name} (${data.level}):</strong> ${data.text}
+            </div>
+          `;
         });
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       });
