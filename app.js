@@ -51,3 +51,31 @@ if (document.getElementById('messages')) {
     });
 
     }
+function register() {
+  const userName = document.getElementById('name').value;
+  const userLevel = document.getElementById('level').value;
+  const userEmail = document.getElementById('email').value;
+  const userPassword = document.getElementById('password').value;
+
+  // Check level
+  if (!['L3','L4','L5','S4','S5','S6'].includes(userLevel)) {
+    alert('Invalid level');
+    return;
+  }
+
+  auth.createUserWithEmailAndPassword(userEmail, userPassword)
+    .then(userCredential => {
+      // Save name + level to Firestore
+      db.collection('users').doc(userCredential.user.uid).set({
+        name: userName,
+        level: userLevel
+      });
+      // Redirect to chat
+      window.location.href = 'chat.html';
+    })
+    .catch(error => {
+      alert(error.message);
+    });
+}
+
+
