@@ -6,10 +6,15 @@
 </head>
 <body>
   <h2>Chat Room</h2>
+
+  <!-- Chat messages -->
   <div class="chat-box" id="messages"></div>
+
+  <!-- Input for sending messages -->
   <input id="message" placeholder="Type a message">
   <button onclick="sendMessage()">Send</button>
 
+  <!-- Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
